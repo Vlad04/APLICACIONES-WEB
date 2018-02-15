@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="container">
+      <div class="row justify-content-sm-cente">
+        <div class="hidden-sm-down col-md-2">
+          barra lateral
+        </div>
+
+        <div class="col-auto col-md-10">
+      <form>
+        <div class="form-group">
+            <label for="nombre">Nombre:</label>
+          <input type="text" class="form-control" id="nombre">
+        </div>
+        <div class="form-group">
+            <label for="apellido">Apellido:</label>
+            <input type="text" class="form-control" id="apellido">
+        </div>
+        <div class="form-group">
+          <label for="apellido">Fecha de nasimiento:</label>
+          <input type="date" id="tiempo" />
+        </div>
+
+        <div class="form-group">
+            <label for="estatura">Estatura:</label>
+            <input type="text" class="form-control" id="estatura">
+        </div>
+        <div class="form-group">
+            <label for="peso">Peso:</label>
+            <input type="text" class="form-control" id="peso">
+        </div>
+        <div class="form-group">
+
+        <label for="sexo">sexo</label>
+        <select id="sexo">
+      <optgroup label="sexo:">
+       <option value="masculino">masculino</option>
+       <option value="femenino">femenino</option>
+      </optgroup>
+
+    </select>
+    <label for="objetivo">¿Cual es tu objetivo?</label>
+<select id="objetivo">
+ <optgroup label="¿que buscas?">
+   <option value="bajar de peso">bajar de peso</option>
+   <option value="tonificar">tonificar</option>
+   <option value="musculos">ganar masa muscular</option>
+   <option value="condicion">mejorar condicion fisica</option>
+
+
+ </optgroup>
+
+</select>
+</div>
+
+      </form>
+          <input type="button" value="guardar" id="guardar" onclick=" ">
+          <p id="demo">
+
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+guardar.onclick=function(){
+  var x, text;
+   x = document.getElementById("peso").value;
+   y=document.getElementById("estatura").value;
+   z=document.getElementById("tiempo").value;
+   nm=document.getElementById("nombre").value;
+   ap=document.getElementById("apellido").value;
+   sx=document.getElementById("sexo").value;
+   ob=document.getElementById("objetivo").value;
+   //edadactual(z);
+   //console.log(z);
+
+   if (isNaN(x)){
+       text = "peso no valido";
+   } else if (isNaN(y)){
+     text = "altura no valida";
+   } else {
+        writeUserData(nm, ap, x, z, y, sx, ob);
+       text = "";
+   }
+   document.getElementById("demo").innerHTML = text;
+};
+function edadactual(feca){
+  var today = new Date();
+  var fecha = new Date();
+  fecha=feca;
+  var dd = today.getDate();
+  var mm = today.getMonth()+1; //January is 0!
+  var yyyy = today.getFullYear();
+  var ddf= fecha.getDate();
+  var mmf=fecha.getMonth();
+  var yyyyf=fecha.getFullYear();
+  var edad;
+  dd=dd-ddf;
+  mm=mm-mmf;
+  yyyy=yyyy-yyyyf-1;
+  edad=0;
+   if(dd>=0&&mm==0) {
+       edad=edad+1;
+   }else if (mm>0) {
+     edad=edad+1;
+   }else if (yyyy<0) {
+     document.getElementById("demo").innerHTML = "error al introducir la fecha";
+   }
+   if(yyyy>0){
+   edad=edad+(yyyy)
+ }
+
+document.write(edad);
+
+}
+function writeUserData(name, last, peso, edad, estatura, sexo, objetivo) {
+  firebase.database().ref('Usuario Vladimir/').set({
+    Apellido: last,
+    Edad: edad,
+    Estatura : estatura,
+    Nombre : name,
+    Objetivo : objetivo,
+    Peso : peso,
+    Sexo : sexo
+  });
+};
+    </script>
+
+    <!-- jQuery first, then Tether, then Bootstrap JS. -->
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+  </body>
+  <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDy4vrua9YlicN3qds7esnjM59WNOeQ8HI",
+    authDomain: "behealthy-e6f1d.firebaseapp.com",
+    databaseURL: "https://behealthy-e6f1d.firebaseio.com",
+    projectId: "behealthy-e6f1d",
+    storageBucket: "",
+    messagingSenderId: "994998809560"
+  };
+  firebase.initializeApp(config);
+</script>
+</html>
