@@ -40,6 +40,7 @@ function ingreso(){
   		console.log(errorCode);
   		console.log(errorMessage);
 	});
+  observador();
 }
 
 function observador(){
@@ -50,11 +51,11 @@ function observador(){
 	  	aparece(user);
 	    // User is signed in.
 	    var displayName = user.displayName;
-	    
+
 	    var email = user.email;
 	    var emailVerified = user.emailVerified;
 	    console.log(user.emailVerified);
-	    
+
 	    var photoURL = user.photoURL;
 	    var isAnonymous = user.isAnonymous;
 	    var uid = user.uid;
@@ -64,30 +65,29 @@ function observador(){
 	    // User is signed out.
 	    console.log("No existe usuario activo");
 	    contenido.innerHTML = `
-		
+
 		`
-	
+
 		;
 	  }
 	});
 }
-observador();
 
 function aparece(user){
 	var user = user;
 	var contenido = document.getElementById('contenido');
 	if (user.emailVerified){
-		
+
 
 		/*  Lo que modifique */
-
+    //traspassuser();
 		window.location.replace("index.html");
 
 		/* ------------------------ */
 
 
 		contenido.innerHTML = `
-		<div class="container mt-5"> 
+		<div class="container mt-5">
 		<div class="alert alert-success" role="alert">
 			<h4 class="alert-heading">Bienvenido! ${user.email}</h4>
 			<p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
@@ -97,7 +97,7 @@ function aparece(user){
 			<button onclick="cerrar()" class="btn btn-danger">Cerrar sesion </button>
 			</div>
 		`
-	
+
 		;
 	}
 }
@@ -110,6 +110,7 @@ function cerrar(){
 	.catch(function(error){
 		console.log(error)
 	})
+  window.location.replace("login.html");
 }
 
 function verificar(){
@@ -123,3 +124,34 @@ function verificar(){
 	});
 
 }
+/*
+function traspassuser(){
+var user = firebase.auth().currentUser;
+ var name, email, photoUrl, uid, emailVerified;
+
+if (user != null) {
+name = user.displayName;
+email = user.email;
+photoUrl = user.photoURL;
+emailVerified = user.emailVerified;
+uid = user.uid;  // The user's ID, unique to the Firebase project. Do NOT use
+                 // this value to authenticate with your backend server, if
+                 // you have one. Use User.getToken() instead.
+                 $.ajax({
+                   url:"formulario.html",
+                   type:"POST",
+                   async:false,
+                   data:{
+                     "done":1,
+                     "usuario":user
+                   },
+                   success:function(data){
+                     document.getElementById("demo").innerHTML = data;
+                   }
+                 });
+}else{
+console.log("no hay usuario");
+
+}
+
+}*/
