@@ -1,224 +1,103 @@
-@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+ @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 
 body {
-    font-family: 'Poppins', sans-serif;
-    background: #fafafa;
+  font-family: 'Poppins', sans-serif;
+}
+/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+.row.content {height: 662px}
+    
+/* Set gray background color and 100% height */
+.sidenav {
+  background-color: #f1f1f1;
+  height: 100%;
+  width: 6%;
+}
+        
+    /* On small screens, set height to 'auto' for the grid */
+@media screen and (max-width: 720px) {
+  .row.content {height: auto;} 
 }
 
-p {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.1em;
-    font-weight: 300;
-    line-height: 1.7em;
-    color: #999;
+/* Para el hover de las imagenes */
+.image {
+  opacity: 1;
+  display: block;
+  height: auto;
+  transition: .2s ease;
+  backface-visibility: hidden;
 }
 
-a, a:hover, a:focus {
-    color: inherit;
-    text-decoration: none;
-    transition: all 0.3s;
+.image:hover  {
+  opacity: 0.3;
 }
 
-.bg {
 
-    background-image: url("https://www.rd.com/wp-content/uploads/2016/01/06-33-healthy-foods-bananas.jpg");
-/*
-    -webkit-filter: blur(1px);
-    -moz-filter: blur(1px);
-    -o-filter: blur(1px);
-    -ms-filter: blur(1px);
-    filter: blur(1px);
-*/
-/*
-    height: 100%;
-*/
-
+/* Para el hover de las imagenes */
+.block{
+  opacity: 1;
+  display: block;
+  height: auto;
+  transition: .4s ease;
+  backface-visibility: hidden;
 }
 
-.navbar {
-    padding: 5px 5px;
-    background: #fff;
-    border: none;
-    border-radius: 0;
-    margin-bottom: 50px;
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+.block:hover{
+    opacity: 0.75;
 }
 
-.navbar-btn {
-    box-shadow: none;
-    outline: none !important;
-    border: none;
+/* Para los Switches de la pagina */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
 }
 
-.line {
-    width: 100%;
-    height: 1px;
-    border-bottom: 1px dashed #ddd;
-    margin: 40px 0;
-}
-/*-----------------------------
-Carusel
-------------------------------*/
+.switch input {display:none;}
 
-/*---------------------------------------------------
-    SIDEBAR STYLE
----------------------------------------------------*/
-.logo {
-    width: 99%;
-    height: 99%;
-    padding: 10px;
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
 }
 
-.logo:hover {
-    -webkit-animation: shake 1s;
-    animation: shake 1s;
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
 }
 
-.wrapper {
-    display: flex;
-    align-items: stretch;
-    perspective: 1500px;
+input:checked + .slider {
+  background-color: #2196F3;
 }
 
-#sidebar {
-    min-width: 60px;
-    max-width: 60px;
-    background:  #1F251C;
-    color: #fff;
-    transition: all 0.6s cubic-bezier(0.945, 0.020, 0.270, 0.665);
-    transform-origin: bottom left;
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
 }
 
-#sidebar.active {
-    margin-left: -250px;
-    transform: rotateY(100deg);
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
 }
 
-#sidebar .sidebar-header {
-    /*padding: 10px;*/
-    background: #1F251C;
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
 }
 
-#sidebar ul.components {
-    padding: 20px 0;
-    border-bottom: 1px solid #47748b;
-}
+.slider.round:before {
+  border-radius: 50%;
 
-#sidebar ul p {
-    color: #fff;
-    padding: 10px;
-}
-
-#sidebar ul li a {
-    padding: 10px;
-    font-size: 1.1em;
-    display: block;
-}
-
-#sidebar ul li a:hover {
-    color: #06C253;
-    background: #fff;
-}
-
-#sidebar ul li.active > a, a[aria-expanded="true"] {
-    color: #fff;
-    background: #6d7fcc;
-}
-
-a[data-toggle="collapse"] {
-    position: relative;
-}
-
-a[aria-expanded="false"]::before, a[aria-expanded="true"]::before {
-    content: '\e259';
-    display: block;
-    position: absolute;
-    right: 10px;
-    font-family: 'Glyphicons Halflings';
-    font-size: 0.6em;
-}
-
-a[aria-expanded="true"]::before {
-    content: '\e260';
-}
-
-ul ul a {
-    font-size: 0.9em !important;
-    padding-left: 30px !important;
-    background: #6d7fcc;
-}
-
-ul.CTAs {
-    padding: 20px;
-}
-
-ul.CTAs a {
-    text-align: center;
-    font-size: 0.9em !important;
-    display: block;
-    border-radius: 5px;
-    margin-bottom: 5px;
-}
-
-a.article, a.article:hover {
-    background: #FFFFFF !important;
-    color: #fff !important;
-}
-/*--------------------------------
-  Service Box
-----------------------------------*/
-.tile {
-  width: 100%;
-	display: inline-block;
-	box-sizing: border-box;
-	background: #fff;
-	padding: 20px;
-	margin-bottom: 30px;
-}
-
-.title {
-  margin-top: 0px;
-}
-
-/* ---------------------------------------------------
-    CONTENT STYLE
------------------------------------------------------ */
-#content {
-    padding: 20px;
-    min-height: 100vh;
-    transition: all 0.3s;
-}
-
-#sidebarCollapse {
-    width: 60px;
-    height: 60px;
-    background: #f5f5f5;
-}
-
-#sidebarCollapse span {
-    width: 80%;
-    height: 2px;
-    margin: 0 auto;
-    display: block;
-    background: #555;
-    transition: all 0.8s cubic-bezier(0.810, -0.330, 0.345, 1.375);
-    transition-delay: 0.4s;
-}
-
-#sidebarCollapse span:first-of-type {
-    transform: rotate(45deg) translate(2px, 2px);
-}
-
-#sidebarCollapse span:nth-of-type(2) {
-    opacity: 0;
-}
-
-#sidebarCollapse span:last-of-type {
-    transform: rotate(-45deg) translate(1px, -1px);
-}
-
-#sidebarCollapse.active span {
-    transform: none;
-    opacity: 1;
-    margin: 5px auto;
-}
