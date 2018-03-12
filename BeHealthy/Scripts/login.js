@@ -1,14 +1,16 @@
 // Initialize Firebase
 
-      var config = {
-        apiKey: "AIzaSyDLxr54S26OCqPzyl6rZcOSgRWDiqAbGbU",
-        authDomain: "webapp-8ff8d.firebaseapp.com",
-        databaseURL: "https://webapp-8ff8d.firebaseio.com",
-        projectId: "webapp-8ff8d",
-        storageBucket: "webapp-8ff8d.appspot.com",
-        messagingSenderId: "322729223975"
-      };
-      firebase.initializeApp(config);
+
+
+var config = {
+	apiKey: "AIzaSyDLxr54S26OCqPzyl6rZcOSgRWDiqAbGbU",
+    authDomain: "webapp-8ff8d.firebaseapp.com",
+    databaseURL: "https://webapp-8ff8d.firebaseio.com",
+    projectId: "webapp-8ff8d",
+    storageBucket: "webapp-8ff8d.appspot.com",
+    messagingSenderId: "322729223975"
+};
+firebase.initializeApp(config);
 
 
 function registrar(){
@@ -65,7 +67,6 @@ function observador(){
 	    // User is signed out.
 	    console.log("No existe usuario activo");
 	    contenido.innerHTML = `
-
 		`
 
 		;
@@ -128,7 +129,6 @@ function verificar(){
 function traspassuser(){
 var user = firebase.auth().currentUser;
  var name, email, photoUrl, uid, emailVerified;
-
 if (user != null) {
 name = user.displayName;
 email = user.email;
@@ -151,7 +151,5 @@ uid = user.uid;  // The user's ID, unique to the Firebase project. Do NOT use
                  });
 }else{
 console.log("no hay usuario");
-
 }
-
 }*/
