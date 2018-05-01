@@ -1,0 +1,52 @@
+ @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+ @import url('https://fonts.googleapis.com/css?family=Lobster');
+
+
+body {
+ font-family: 'Poppins', sans-serif;
+}
+
+ /* Remove the navbar's default margin-bottom and rounded borders */ 
+}
+.navbar {
+  margin-bottom: 0;
+  border-radius: 0;
+}
+    
+/* Add a gray background color and some padding to the footer */
+footer {
+  background-color: #f2f2f2;
+  padding: 25px;
+}
+    
+.carousel-inner img {
+  width: 100%; /* Set width to 100% */
+  margin: auto;
+  min-height:200px;
+}
+
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+}
+
+.queue{ display: none; }
+.neee{ display: block; }
+
+/* Hide the carousel text when the screen is less than 600 pixels wide */
+@media (max-width: 765px) {
+  .carousel-caption {
+    display: none; 
+  }
+
+  .queue{ display: block; }
+  .neee{ display: none; }
+
+}
+
+
