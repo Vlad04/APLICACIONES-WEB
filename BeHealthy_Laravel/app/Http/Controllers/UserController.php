@@ -2,12 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use Cookie;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\DB;
+use App\User;
+
 
 class UserController extends Controller{
+
+    public $username = "";
+    public $id_User = "";
+
     public function store(request $request){
         //print_r($request->input());
         $name=$request->input('name');
@@ -21,26 +28,44 @@ class UserController extends Controller{
 
         return view('login');
     }
+
     public function show(){
-        
-        
+        return view('login');
+    }
+
+    public function retName(){
+        return $username;
+    }
+
+    public function LogOut(){
+        Cookie::forget('sesion');
         return view('login');
     }
 
     public function logs(request $request){
-
         $email=$request->input('name');
         $password=$request->input('password');
 
         $data =  DB::select('select id from users where email=? and password=?', [$email,$password]);
         
-    
-        if(count($data)){
-            info('haaaaaa');
-            return view('index');
+        foreach ($data as $user) {
+            $id_User=$user->id;
         }
-        else{
-            echo($email);
+
+        $names = DB::select('select nombre from users where id=?', [$id_User]);
+
+         foreach ($names as $user) {
+            $username = $user->nombre;
+        }
+
+        if(count($data)){
+            $users = User::find($id_User);
+
+            return view('index', array('users'=>$users));
+
+        } else{
+            return view('login');
+            echo('Usuario y/o contraseña incorrectos');
         }
     }
 }
