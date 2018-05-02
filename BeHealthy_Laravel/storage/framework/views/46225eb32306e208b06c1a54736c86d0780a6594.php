@@ -92,16 +92,15 @@
           </div>
 
           <form class="" action="<?php echo e(URL::to('logs')); ?>" method="post">
-                    <input type="text" name="name" placeholder="Enter name" value="">
+                    <input class="form-control" type="text" name="name" placeholder="Enter name" value="">
                     <br>
                     <br>
-                    <input type="password" name="password" placeholder="Enter password" value="">
-                    <br>
+                    <input class="form-control" type="password" name="password" placeholder="Enter password" value="">
                     <br>
                     <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
                     <br>
-                    <br>
-                    <button type="submit" name="button">Login</button>
+                     <button type="submit" name="button" class="btn peach-gradient btn-lg" style="background-color: #87D050; position: absolute; top: 197px; right: 12px;">Inicia sesión</button>
+                     <br>
                 </form>
           </div>
         </div>

@@ -17,8 +17,12 @@ Route::get('/registro', function(){
 	return view('registro');
 });
 
-Route::get('/app', function(){
+Route::get('/logs', function(){
 	return view('index');
+});
+
+Route::get('/logs/maps',  function(){
+	return view('maps');
 });
 
 Route::post('/logs', "UserController@logs" );

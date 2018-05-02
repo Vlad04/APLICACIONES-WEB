@@ -18,11 +18,9 @@
   <link rel="stylesheet" href="{{ asset('css/animate.css') }}" type='text/css'>
 
   <script src="{{ asset('js/Script.js') }}"></script>
-  {{--<script src="{{ asset('js/Login.js') }}"></script>--}}
 
 </head>
 <body style="background-color: black;">
-
   <nav class="navbar navbar-inverse visible-xs" style="background-color: black;">
     <div class="container-fluid" id="sidebar">
       <div class="navbar-header">
@@ -31,7 +29,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#"><img src="Images/heart64x64.png" style="margin-left: 0px !important; width: 70%;" class="image"></a>
+        <a class="navbar-brand" href="#"><img src="{{ asset('img/heart64x64.png') }}" style="margin-left: 0px !important; width: 70%;" class="image"></a>
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
@@ -57,10 +55,10 @@
           <li onclick="To_User()"><a><img class="wow bounceIn image" data-wow-delay="0.3s" src="{{ asset('img/User.png') }}" style="border: 0;" /></a></li>
           <li onclick="To_Home()"><a><img class="wow bounceIn image" data-wow-delay="0.4s" src="{{ asset('img/GreenHome.png') }}" style="border: 0;"/></a></li>
           <li onclick="To_Stats()"><a><img class="wow bounceIn image" data-wow-delay="0.5s" src="{{ asset('img/chart.png') }}" style="border: 0;"/></a></li>
-          <li><a><img class="wow bounceIn image" data-wow-delay="0.6s" src="{{ asset('img/excercise.png') }}" style="border: 0;" /></a></li>
+          <li onclick="To_Routines()"><a><img class="wow bounceIn image" data-wow-delay="0.6s" src="{{ asset('img/excercise.png') }}" style="border: 0;" /></a></li>
           <li><a><img class="wow bounceIn image" data-wow-delay="0.7s" src="{{ asset('img/Hearts.png') }}" style="border: 0;" /></a></li>
-          <li onclick="To_Settings()"><a><img class="wow bounceIn image" data-wow-delay="0.8s" src="{{ asset('img/Gear.png') }}" style="border: 0;" /></a></li>
-          <li onclick="cerrar()"><a><img class="wow bounceIn image" data-wow-delay="0.9s" src="{{ asset('img/power-button-off.png') }}" style="border: 0;"/></a></li>
+          <li onclick="toMaps()"><a><img class="wow bounceIn image" data-wow-delay="0.8s" src="{{ asset('img/maps.png') }}" style="border: 0;" /></a></li>
+          <li onclick=""><a><img class="wow bounceIn image" data-wow-delay="0.9s" src="{{ asset('img/power-button-off.png') }}" style="border: 0;"/></a></li>
         </ul><br>
       </div>
       <br>
@@ -107,6 +105,7 @@
             </div>
           </div>
 
+
           <div class="col-sm-4">
             <div class="well">
               <p>Text</p>
@@ -139,29 +138,26 @@
 
             <div class="well row wow slideInRight">
               <div class="col-sm-2 ">
-                <img src="Images/UserDefault.png">
+                <img src="{{ asset('img/UserDefault.png') }}">
               </div>
 
               <div class="col-sm-4">
-                <h3>Default User</h3>
-                <p style="font-style: italic;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sollicitudin turpis ac dui feugiat pharetra id vitae ligula.</p>
+                <h3> {{ $users->nombre }}</h3>
+                <p style="font-style: italic;">Fecha de ingreso:  02 de mayo de 2018</p>
+                <br>
+                 <p style="font-style: italic;">Estatura:  {{ $users->estatura }} centimetros</p>
+                 <p style="font-style: italic;">Peso:  {{ $users->peso }} Kilogramos</p>
+                 <pstyle="font-style: italic;"> Indice de masa corporal:  {{ round(($users->peso / ($users->estatura*$users->estatura))*10000, 2) }}</p>
               </div>
 
               <div class="col-sm-4">
-              	<p style="font-style: italic;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sollicitudin turpis ac dui feugiat pharetra id vitae ligula.</p>
+                <h3>Interpretación</h3>
+              	<p style="font-style: italic;">
+                  El valor obtenido no es constante, sino que varía con la edad y el sexo. También depende de otros factores: La siguiente tabla representa una media de valores.
+                </p>
+                <img src="{{ asset('img/tabla_IMC.png') }}" style="width: 115%;">
               </div>
-
-
             </div>
-
-            <div class="well row wow slideInDown">
-            	<div class="col-sm-10 ">
-            		<h3>Lorem Ipsum</h3>
-                	<p style="font-style: italic;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sollicitudin turpis ac dui feugiat pharetra id vitae ligula.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sollicitudin turpis ac dui feugiat pharetra id vitae ligula.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sollicitudin turpis ac dui feugiat pharetra id vitae ligula.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sollicitudin turpis ac dui feugiat pharetra id vitae ligula.</p>
-            	</div>
-            </div>
-
-
           </div>
         </div>
       </div>
@@ -186,6 +182,150 @@
 	</div>
 
 <!-- Termina stats  -->
+
+{{-- Comienza rutinas --}}
+  <div class="col-lg-11" id="Routines" style="display: none;">
+    <div class="row" style="padding: 2%;" style="height: 120%;">
+        <div class="col-sm-12">
+          <div class="well row">
+            <div class="col-sm-2">
+              <li>
+                <a href="#" data-toggle="modal" data-target="#exampleModal">
+                  <span class="glyphicon">
+                    <img src="{{ asset('img/chest_press.gif') }}">
+                  </span>
+                </a>
+              </li>
+            </div>
+
+            <div class="col-sm-2">
+              <li>
+                <a href="#" data-toggle="modal" data-target="#exampleModal">
+                  <span class="glyphicon">
+                    <img src="{{ asset('img/bicepseagle.gif') }}">
+                  </span>
+                </a>
+              </li>
+            </div>
+
+            <div class="col-sm-2">
+              <li>
+                <a href="#" data-toggle="modal" data-target="#exampleModal">
+                  <span class="glyphicon">
+                    <img src="{{ asset('img/copa.gif') }}">
+                  </span>
+                </a>
+              </li>
+            </div>
+
+            <div class="col-sm-2">
+              <li>
+                <a href="#" data-toggle="modal" data-target="#exampleModal">
+                  <span class="glyphicon">
+                    <img src="{{ asset('img/costurera.gif') }}">
+                  </span>
+                </a>
+              </li>
+            </div>
+
+            <div class="col-sm-2">
+              <li>
+                <a href="#" data-toggle="modal" data-target="#exampleModal">
+                  <span class="glyphicon">
+                    <img src="{{ asset('img/bicepseagle.gif') }}">
+                  </span>
+                </a>
+              </li>
+            </div>
+
+         
+            <div class="col-sm-2">
+              <li>
+                <a href="#" data-toggle="modal" data-target="#exampleModal">
+                  <span class="glyphicon">
+                    <img src="{{ asset('img/concentrado.gif') }}">
+                  </span>
+                </a>
+              </li>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+<div class="row" style="padding: 2%;" style="height: 120%;">
+        <div class="col-sm-12">
+          <div class="well row">
+            <div class="col-sm-2">
+              <li>
+                <a href="#" data-toggle="modal" data-target="#exampleModal">
+                  <span class="glyphicon">
+                    <img src="{{ asset('img/legpress.gif') }}">
+                  </span>
+                </a>
+              </li>
+            </div>
+
+            <div class="col-sm-2">
+              <li>
+                <a href="#" data-toggle="modal" data-target="#exampleModal">
+                  <span class="glyphicon">
+                    <img src="{{ asset('img/martillo.gif') }}">
+                  </span>
+                </a>
+              </li>
+            </div>
+
+            <div class="col-sm-2">
+              <li>
+                <a href="#" data-toggle="modal" data-target="#exampleModal">
+                  <span class="glyphicon">
+                    <img src="{{ asset('img/remopiso.gif') }}">
+                  </span>
+                </a>
+              </li>
+            </div>
+
+            <div class="col-sm-2">
+               <li>
+                <a href="#" data-toggle="modal" data-target="#exampleModal">
+                  <span class="glyphicon">
+                    <img src="{{ asset('img/remosentado.gif') }}">
+                  </span>
+                </a>
+              </li>
+            </div>
+
+            <div class="col-sm-2">
+              <li>
+                <a href="#" data-toggle="modal" data-target="#exampleModal">
+                  <span class="glyphicon">
+                    <img src="{{ asset('img/sentadilla.gif') }}">
+                  </span>
+                </a>
+              </li>
+            </div>
+
+         
+            <div class="col-sm-2">
+
+              <li>
+                <a href="#" data-toggle="modal" data-target="#exampleModal">
+                  <span class="glyphicon">
+                    <img src="{{ asset('img/tricepsextension.gif') }}">
+                  </span>
+                </a>
+              </li>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+  </div>
+{{-- Termina Rutinas  --}}
 
 <!-- Empieza Settings -->
     <div class="col-lg-11" id="Settings" style="display: none;">
@@ -218,43 +358,23 @@
       </div>
     </div>
 <!-- Termina Settings -->
+  </div>
 
+
+  {{-- MODAL --}}
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document" style="top: 100px;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <img src="{{ asset('img/Heart32x32.png') }}" style="display: block; margin: 0 auto;">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form class=""></form>
+      </div>
+    </div>
   </div>
 </body>
 
-<script type="text/javascript">
-  
-  new Chart(document.getElementById("radar-chart"), {
-    type: 'radar',
-    data: {
-      labels: ["Excercise", "Diet", "Resistance"],
-      datasets: [
-        {
-          label: "2017",
-          fill: true,
-          backgroundColor: "rgba(179,181,198,0.2)",
-          borderColor: "rgba(179,181,198,1)",
-          pointBorderColor: "#fff",
-          pointBackgroundColor: "rgba(179,181,198,1)",
-          data: [8.77,55.61,21.69]
-        }, {
-          label: "2018",
-          fill: true,
-          backgroundColor: "rgba(255,99,132,0.2)",
-          borderColor: "rgba(255,99,132,1)",
-          pointBorderColor: "#fff",
-          pointBackgroundColor: "rgba(255,99,132,1)",
-          pointBorderColor: "#fff",
-          data: [25.48,54.16,7.61]
-        }
-      ]
-    },
-    options: {
-      title: {
-        display: true,
-        text: 'Performance'
-      }
-    }
-});
-</script>
 </html>
