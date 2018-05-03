@@ -316,7 +316,7 @@ class ComposerStaticInit1ed680c77984b8d909efd185def2927e
     public static $classMap = array (
         'App\\Car' => __DIR__ . '/../..' . '/app/Car.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
-        'App\\Dieta' => __DIR__ . '/../..' . '/app/Dieta.php',
+        'App\\Diets' => __DIR__ . '/../..' . '/app/Diets.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
@@ -336,7 +336,9 @@ class ComposerStaticInit1ed680c77984b8d909efd185def2927e
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
+        'App\\Rutinas' => __DIR__ . '/../..' . '/app/Rutinas.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
+        'App\\rutina' => __DIR__ . '/../..' . '/app/rutina.php',
         'Carbon\\Carbon' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Carbon.php',
         'Carbon\\CarbonInterval' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/CarbonInterval.php',
         'Carbon\\Exceptions\\InvalidDateException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/InvalidDateException.php',

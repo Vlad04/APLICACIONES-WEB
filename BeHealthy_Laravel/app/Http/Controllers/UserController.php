@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\DB;
 use App\User;
+use App\Diets;
 
 
 class UserController extends Controller{
@@ -46,22 +47,28 @@ class UserController extends Controller{
         $email=$request->input('name');
         $password=$request->input('password');
 
+
+
         $data =  DB::select('select id from users where email=? and password=?', [$email,$password]);
-        
+
         foreach ($data as $user) {
             $id_User=$user->id;
         }
+        if(count($data)){
+          $names = DB::select('select nombre from users where id=?', [$id_User]);
 
-        $names = DB::select('select nombre from users where id=?', [$id_User]);
-
-         foreach ($names as $user) {
+          foreach ($names as $user) {
             $username = $user->nombre;
         }
-
+      }
         if(count($data)){
             $users = User::find($id_User);
+            $comida =  Diets::find(date("G"));
 
-            return view('index', array('users'=>$users));
+
+
+
+            return view('index', array('users'=>$users),array('comida'=>$comida));
 
         } else{
             return view('login');

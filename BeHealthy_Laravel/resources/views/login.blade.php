@@ -23,7 +23,7 @@
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
-          <span class="icon-bar"></span>                        
+          <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand wow bounceIn" href="#" style="font-family: 'Lobster', cursive; color: #87D050;font-size: 220%;">Be Healthy</a>
       </div>
@@ -51,25 +51,25 @@
 
           <button type="button" class="btn peach-gradient btn-lg" style="background-color: #87D050;" onclick="toRegister()">Registrate ya!!</button>
 
-        </div>      
+        </div>
       </div>
     </div>
   </div>
-    
-  <div class="container text-center">    
+
+  <div class="container text-center">
     <h1 style="font-family: 'Lobster', cursive;">Como funciona</h1><br>
     <div class="row">
 
-      <div class="col-sm-4">     
-        <img src="{{ asset('img/cutlery.png') }}" class="wow bounceIn"> 
+      <div class="col-sm-4">
+        <img src="{{ asset('img/cutlery.png') }}" class="wow bounceIn">
         <h2>Planes de comida adecuado para tí</h2>
         <p>Nuestros entrenamientos de alta intensidad se pueden realizar en cualquier lugar, en cualquier momento y te llevarán menos tiempo que entrenar en el gimnasio.</p>
       </div>
 
-      <div class="col-sm-4"> 
+      <div class="col-sm-4">
         <img src="{{ asset('img/dumbbell.png') }}" class="wow bounceIn">
         <h2>Entrenamientos rápidos y efectivos</h2>
-        <p>Te ofrecemos planes de comida que realmente funcionan. Planes personalizados hasta el último ingrediente.</p>    
+        <p>Te ofrecemos planes de comida que realmente funcionan. Planes personalizados hasta el último ingrediente.</p>
       </div>
 
       <div class="col-sm-4">

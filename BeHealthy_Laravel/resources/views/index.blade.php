@@ -38,7 +38,9 @@
           <li><a onclick="To_Stats()">Statistics</a></li>
           <li><a href="#">Excercises</a></li>
           <li><a onclick="To_Settings()">Configuration</a></li>
-          <li><a href="#">Logout</a></li>
+          <li><a onclick="To_Diets()">Diets</a></li>
+          <li><a onclick="toMaps()">Maps</a></li>
+          <li><a onclick="LogOut()">Logout</a></li>
         </ul>
       </div>
     </div>
@@ -56,12 +58,24 @@
           <li onclick="To_Home()"><a><img class="wow bounceIn image" data-wow-delay="0.4s" src="{{ asset('img/GreenHome.png') }}" style="border: 0;"/></a></li>
           <li onclick="To_Stats()"><a><img class="wow bounceIn image" data-wow-delay="0.5s" src="{{ asset('img/chart.png') }}" style="border: 0;"/></a></li>
           <li onclick="To_Routines()"><a><img class="wow bounceIn image" data-wow-delay="0.6s" src="{{ asset('img/excercise.png') }}" style="border: 0;" /></a></li>
-          <li><a><img class="wow bounceIn image" data-wow-delay="0.7s" src="{{ asset('img/Hearts.png') }}" style="border: 0;" /></a></li>
+          <li onclick="To_Diets()"> <a><img class="wow bounceIn image" data-wow-delay="0.7s" src="{{ asset('img/Hearts.png') }}" style="border: 0;" /></a></li>
           <li onclick="toMaps()"><a><img class="wow bounceIn image" data-wow-delay="0.8s" src="{{ asset('img/maps.png') }}" style="border: 0;" /></a></li>
-          <li onclick=""><a><img class="wow bounceIn image" data-wow-delay="0.9s" src="{{ asset('img/power-button-off.png') }}" style="border: 0;"/></a></li>
+          <li onclick="LogOut()"><a><img class="wow bounceIn image" data-wow-delay="0.9s" src="{{ asset('img/power-button-off.png') }}" style="border: 0;"/></a></li>
         </ul><br>
       </div>
       <br>
+
+      <div class="col-lg-11" id="Dietas" style="display: none;">
+        <div class="row" style="padding: 2%;" style="height: 120%;">
+            <div class="col-sm-12">
+              <div class="well row">
+                <div class="col-sm-2">
+                  <p style="font-style: italic;">Alimento: {{ $comida->dieta}} Hora:{{ $comida->hora}}</p>
+                </div>
+              </div>
+              </div>
+              </div>
+              </div>
 
       <div class="col-lg-11" id="Home"> <!-- Comienza el home -->
         <div class="well block">
@@ -78,7 +92,7 @@
           </div>
 
           <div class="col-sm-4 block">
-            <div class="well" style="background: url(https://comenzandodecero.com/wp-content/uploads/2014/04/estad%C3%ADsticas-blogger.jpg);"">
+            <div class="well" style="background: url(https://comenzandodecero.com/wp-content/uploads/2014/04/estad%C3%ADsticas-blogger.jpg);">
               <h4>Estadísticas</h4>
               <p>Verifca y compara tus datos con respecto a semanas pasadas.</p>
             </div>
@@ -138,7 +152,7 @@
 
             <div class="well row wow slideInRight">
               <div class="col-sm-2 ">
-                <img src="{{ asset('img/UserDefault.png') }}">
+                <img src="{{ asset('img/Rafa.jpg') }}" width="180" height="180">
               </div>
 
               <div class="col-sm-4">
@@ -164,16 +178,48 @@
 <!-- Termina USER -->
 
 <!-- Empieza stars  -->
+<div id="graphDiv1"></div>
+<br />
+<div id="graphDiv2"></div>
+<!--[if IE]><script src="excanvas.js"></script><![endif]-->
+<script src="html5-canvas-bar-graph.js"></script>
+
+<script>(function () {
+
+  function createCanvas(divName) {
+
+    var div = document.getElementById(divName);
+    var canvas = document.createElement('canvas');
+    div.appendChild(canvas);
+    if (typeof G_vmlCanvasManager != 'undefined') {
+      canvas = G_vmlCanvasManager.initElement(canvas);
+    }
+    var ctx = canvas.getContext("2d");
+    return ctx;
+  }
+
+  var ctx = createCanvas("graphDiv1");
+
+  var graph = new BarGraph(ctx);
+  graph.maxValue = 30;
+  graph.margin = 2;
+  //AQUI METEN LAS VARIABLES IMC, IDEAL_WEIGHT Y TIEMPO ESPERADO PARA TENER EL PESO IDEAL
+  graph.colors = [ "#2ECC71", "#A3E4D7", "#5499C7"];
+  graph.xAxisLabelArr = ["IMC", "Ideal Weight", "Time"];
+  setInterval(function () {
+    graph.update([10, 70, 90]);
+  }, 1000);
+
+
+}());</script>
+
   	<div class="col-lg-11" id="Stats" style="display: none;">
     	<div class="row" style="padding: 2%;">
 	      	 <div class="col-sm-12">
 	          <div class="well row">
 
 	            <div class="col-sm-2">
-	              <label class="switch">
-	                 <input type="checkbox" checked>
-	                 <span class="slider round"></span>
-	              </label>
+
 	            </div>
 
 	          </div>
@@ -238,7 +284,7 @@
               </li>
             </div>
 
-         
+
             <div class="col-sm-2">
               <li>
                 <a href="#" data-toggle="modal" data-target="#exampleModal">
@@ -306,7 +352,7 @@
               </li>
             </div>
 
-         
+
             <div class="col-sm-2">
 
               <li>
@@ -361,19 +407,150 @@
   </div>
 
 
+
+
+
   {{-- MODAL --}}
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document" style="top: 100px;">
-      <div class="modal-content">
-        <div class="modal-header">
-          <img src="{{ asset('img/Heart32x32.png') }}" style="display: block; margin: 0 auto;">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+  <div class="col-lg-11" id="Routines" style="display: none;">
+    <div class="row" style="padding: 2%;" style="height: 120%;">
+        <div class="col-sm-12">
+          <div class="well row">
+            <div class="col-sm-2">
+              <li>
+                <a href="#" data-toggle="modal" data-target="#exampleModal">
+                  <span class="glyphicon">
+                    <img src="{{ asset('img/chest_press.gif') }}">
+                  </span>
+                </a>
+              </li>
+            </div>
+
+            <div class="col-sm-2">
+              <li>
+                <a href="#" data-toggle="modal" data-target="#exampleModal">
+                  <span class="glyphicon">
+                    <img src="{{ asset('img/bicepseagle.gif') }}">
+                  </span>
+                </a>
+              </li>
+            </div>
+
+            <div class="col-sm-2">
+              <li>
+                <a href="#" data-toggle="modal" data-target="#exampleModal">
+                  <span class="glyphicon">
+                    <img src="{{ asset('img/copa.gif') }}">
+                  </span>
+                </a>
+              </li>
+            </div>
+
+            <div class="col-sm-2">
+              <li>
+                <a href="#" data-toggle="modal" data-target="#exampleModal">
+                  <span class="glyphicon">
+                    <img src="{{ asset('img/costurera.gif') }}">
+                  </span>
+                </a>
+              </li>
+            </div>
+
+            <div class="col-sm-2">
+              <li>
+                <a href="#" data-toggle="modal" data-target="#exampleModal">
+                  <span class="glyphicon">
+                    <img src="{{ asset('img/bicepseagle.gif') }}">
+                  </span>
+                </a>
+              </li>
+            </div>
+
+
+            <div class="col-sm-2">
+              <li>
+                <a href="#" data-toggle="modal" data-target="#exampleModal">
+                  <span class="glyphicon">
+                    <img src="{{ asset('img/concentrado.gif') }}">
+                  </span>
+                </a>
+              </li>
+            </div>
+
+          </div>
         </div>
-        <form class=""></form>
       </div>
-    </div>
+
+<div class="row" style="padding: 2%;" style="height: 120%;">
+        <div class="col-sm-12">
+          <div class="well row">
+            <div class="col-sm-2">
+              <li>
+                <a href="#" data-toggle="modal" data-target="#exampleModal">
+                  <span class="glyphicon">
+                    <img src="{{ asset('img/legpress.gif') }}">
+                  </span>
+                </a>
+              </li>
+            </div>
+
+            <div class="col-sm-2">
+              <li>
+                <a href="#" data-toggle="modal" data-target="#exampleModal">
+                  <span class="glyphicon">
+                    <img src="{{ asset('img/martillo.gif') }}">
+                  </span>
+                </a>
+              </li>
+            </div>
+
+            <div class="col-sm-2">
+              <li>
+                <a href="#" data-toggle="modal" data-target="#exampleModal">
+                  <span class="glyphicon">
+                    <img src="{{ asset('img/remopiso.gif') }}">
+                  </span>
+                </a>
+              </li>
+            </div>
+
+            <div class="col-sm-2">
+               <li>
+                <a href="#" data-toggle="modal" data-target="#exampleModal">
+                  <span class="glyphicon">
+                    <img src="{{ asset('img/remosentado.gif') }}">
+                  </span>
+                </a>
+              </li>
+            </div>
+
+            <div class="col-sm-2">
+              <li>
+                <a href="#" data-toggle="modal" data-target="#exampleModal">
+                  <span class="glyphicon">
+                    <img src="{{ asset('img/sentadilla.gif') }}">
+                  </span>
+                </a>
+              </li>
+            </div>
+
+
+            <div class="col-sm-2">
+
+              <li>
+                <a href="#" data-toggle="modal" data-target="#exampleModal">
+                  <span class="glyphicon">
+                    <img src="{{ asset('img/tricepsextension.gif') }}">
+                  </span>
+                </a>
+              </li>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
   </div>
 </body>
 

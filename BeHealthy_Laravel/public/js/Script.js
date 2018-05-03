@@ -5,6 +5,7 @@ function To_User() {
     document.getElementById("Home").style.display = "none";
     document.getElementById("Stats").style.display = "none";
     document.getElementById("Routines").style.display = "none";
+    document.getElementById("Dietas").style.display = "none";
     document.getElementById("User").style.display = "block";
 }
 
@@ -13,12 +14,14 @@ function To_Home() {
     document.getElementById("User").style.display = "none";
     document.getElementById("Stats").style.display = "none";
     document.getElementById("Routines").style.display = "none";
+    document.getElementById("Dietas").style.display = "none";
     document.getElementById("Home").style.display = "block";
 }
 
 function To_Settings() {
     document.getElementById("Home").style.display = "none";
     document.getElementById("User").style.display = "none";
+    document.getElementById("Dietas").style.display = "none";
     document.getElementById("Stats").style.display = "none";
     document.getElementById("Routines").style.display = "none";
     document.getElementById("Settings").style.display = "block";
@@ -27,6 +30,7 @@ function To_Settings() {
 function To_Stats() {
     document.getElementById("Home").style.display = "none";
     document.getElementById("User").style.display = "none";
+    document.getElementById("Dietas").style.display = "none";
     document.getElementById("Settings").style.display = "none";
     document.getElementById("Routines").style.display = "none";
     document.getElementById("Stats").style.display = "block";
@@ -35,12 +39,24 @@ function To_Stats() {
 function To_Routines() {
     document.getElementById("Home").style.display = "none";
     document.getElementById("User").style.display = "none";
+    document.getElementById("Dietas").style.display = "none";
     document.getElementById("Settings").style.display = "none";
     document.getElementById("Stats").style.display = "none";
     document.getElementById("Routines").style.display = "block";
 }
 
+function To_Diets() {
+    document.getElementById("Home").style.display = "none";
+    document.getElementById("User").style.display = "none";
+    document.getElementById("Dietas").style.display = "block";
+    document.getElementById("Settings").style.display = "none";
+    document.getElementById("Stats").style.display = "none";
+    document.getElementById("Routines").style.display = "none";
+}
 
+function LogOut() {
+    window.location.replace('/');
+}
 function toMaps() {
     window.location.replace('/logs/maps');
 }
